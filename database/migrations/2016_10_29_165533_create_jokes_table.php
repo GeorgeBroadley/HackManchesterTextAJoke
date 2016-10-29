@@ -15,11 +15,11 @@ class CreateJokesTable extends Migration
     {
         Schema::create('jokes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('joke');
             $table->string('punchline');
             $table->boolean('flagged');
-            $table->string('category_id');
+            $table->integer('category_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
