@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        // $this->call(JokesTableSeeder::class);
+        DB::table('jokes')->insert([
+            'user_id' => null,
+            'joke' => "Why do Java devs wear glasses?",
+            'punchline' => "Because they can’t C#",
+            'flagged' => false,
+            'category_id' => null
+        ]);
     }
 }
