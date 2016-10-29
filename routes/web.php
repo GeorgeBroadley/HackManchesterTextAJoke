@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'JokeController@sendSMS');
+Route::get('/recievetext', 'JokeController@sendSMS');
