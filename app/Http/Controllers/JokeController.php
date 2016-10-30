@@ -33,4 +33,55 @@ class JokeController extends Controller
         $message2 = array( 'to' => $sendTo, 'message' => $jokeToSend->punchline);
         $result = $clockwork->send( $message2 );
     }
+
+    public function home() {
+        $joke = Joke::inRandomOrder()->first();
+
+        return response()
+            ->view('home', $joke, 200);
+    }
+
+    public function submitJoke() {
+        $jokeInput = Input::get('joke');
+        $punchlineInput = Input::get('punchline');
+        $user = User::auth();
+
+        if (!$user) {
+            return redirect('/');
+        } else if (!$jokeInput || !$punchlineInput) {
+            $errors = {'error' => 'Missing joke input or punchline input.'};
+
+            return response()
+                ->view('submit', 'errors', 200);
+        }
+
+        $joke = new Joke;
+        $joke->user_id = $user->id;
+        $joke->joke = Input::get('joke');
+        $joke->punchline = Input::get('punchline');
+        $joke->flagged = false;
+        $joke->save();
+
+        return redirect('/');
+    }
+
+    public function reportJoke() {
+        //
+    }
+
+    public function deleteJoke() {
+        //
+    }
+
+    // public function getJoke($id) {
+    //     $joke = Joke::find($id);
+    //
+    //     if ($joke == null) {
+    //         return response()
+    //             ->view('welcome');
+    //     } else {
+    //         return response()
+    //             ->view('home', $joke, 200);
+    //     }
+    // }
 }

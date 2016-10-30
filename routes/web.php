@@ -11,4 +11,7 @@
 |
 */
 
+Auth::routes();
 Route::get('/recievetext', 'JokeController@sendSMS');
+Route::get('/', 'JokeController@home');
+// Route::get('/{id}', 'JokeController@getJoke');
