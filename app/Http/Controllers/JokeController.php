@@ -37,14 +37,14 @@ class JokeController extends Controller
     }
 
     public function home() {
-        $joke = Joke::inRandomOrder()->first();
+        $joke = Joke::where("flagged", "=", false)->inRandomOrder()->first();
 
         return response()
             ->view('home', $joke, 200);
     }
 
     public function submitJoke() {
-        $jokeInput = Input::get('joke');
+        $jokeInput = Input::get('title');
         $punchlineInput = Input::get('punchline');
         //$user = User::auth();
 
@@ -52,7 +52,7 @@ class JokeController extends Controller
             return redirect('/');
         } else*/
         if (!$jokeInput || !$punchlineInput) {
-            $errors = ['error' => 'Missing joke input or punchline input.'];
+            $errors = ['error' => 'Missing title input or punchline input.'];
 
             return response()
                 ->view('submit', 'errors', 200);
@@ -60,7 +60,7 @@ class JokeController extends Controller
 
         $joke = new Joke;
         //$joke->user_id = $user->id;
-        $joke->joke = Input::get('joke');
+        $joke->joke = Input::get('title');
         $joke->punchline = Input::get('punchline');
         $joke->flagged = true;
         $joke->save();
@@ -69,7 +69,8 @@ class JokeController extends Controller
     }
 
     public function submitView() {
-        //
+        return response()
+            ->view('submit');
     }
 
     // public function reportJoke() {
@@ -84,6 +85,24 @@ class JokeController extends Controller
         $joke = Joke::find($id);
         $joke->flagged = false;
         $joke->save();
+
+        return redirect('/flaggedjokes');
+    }
+
+    public function getFlaggedJokes() {
+        $jokes = Joke::where("flagged", "=", true)->get();
+
+        $jokeArray = [];
+        foreach ($jokes as $joke) {
+            $jokeArray['jokes'][] = $joke;
+        }
+
+        if (!$jokeArray) {
+            return redirect('/');
+        }
+
+        return response()
+            ->view('flaggedjokes', $jokeArray,200);
     }
 
     // public function getJoke($id) {
