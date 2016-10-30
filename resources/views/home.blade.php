@@ -12,8 +12,8 @@
                 <div class="sub-title">{{ $joke }}</div>
                 <div class="section-lead-paragraph">
                     {{ $punchline }}
-                    <br />
-                    <a href="#">Report Joke</a>
+                    {{--<br />
+                    <a href="#">Report Joke</a>--}}
                 </div>
                 <div class="section-button">
                     <a href="./"><button>Another!</button></a>

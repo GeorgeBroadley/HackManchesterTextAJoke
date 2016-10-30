@@ -44,33 +44,44 @@ class JokeController extends Controller
     public function submitJoke() {
         $jokeInput = Input::get('joke');
         $punchlineInput = Input::get('punchline');
-        $user = User::auth();
+        //$user = User::auth();
 
-        if (!$user) {
+        /*if (!$user) {
             return redirect('/');
-        } else if (!$jokeInput || !$punchlineInput) {
-            $errors = {'error' => 'Missing joke input or punchline input.'};
+        } else*/
+        if (!$jokeInput || !$punchlineInput) {
+            $errors = ['error' => 'Missing joke input or punchline input.'];
 
             return response()
                 ->view('submit', 'errors', 200);
         }
 
         $joke = new Joke;
-        $joke->user_id = $user->id;
+        //$joke->user_id = $user->id;
         $joke->joke = Input::get('joke');
         $joke->punchline = Input::get('punchline');
-        $joke->flagged = false;
+        $joke->flagged = true;
         $joke->save();
 
         return redirect('/');
     }
 
-    public function reportJoke() {
+    public function submitView() {
         //
     }
 
+    // public function reportJoke() {
+    //     //
+    // }
+
     public function deleteJoke() {
         //
+    }
+
+    public function unFlagJoke($id) {
+        $joke = Joke::find($id);
+        $joke->flagged = false;
+        $joke->save();
     }
 
     // public function getJoke($id) {
