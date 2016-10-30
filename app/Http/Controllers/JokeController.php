@@ -15,7 +15,7 @@ class JokeController extends Controller
 
         $array = explode(' ', $content, 2);
 
-        if (strtolower($array[1]) == 'me') {
+        if (strtolower($array[1]) == 'me' || $array[1] == '07860033747') {
             $sendTo = $from;
         } else {
             $sendTo = $array[1];
