@@ -30,6 +30,8 @@ class JokeController extends Controller
         $message = array( 'to' => $sendTo, 'message' => $jokeToSend->joke);
         $result = $clockwork->send( $message );
 
+        sleep(5);
+
         $message2 = array( 'to' => $sendTo, 'message' => $jokeToSend->punchline);
         $result = $clockwork->send( $message2 );
     }
