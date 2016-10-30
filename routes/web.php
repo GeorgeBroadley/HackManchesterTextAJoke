@@ -14,6 +14,8 @@
 Auth::routes();
 Route::get('/recievetext', 'JokeController@sendSMS');
 Route::get('/submit', 'JokeController@submitView');
-Route::post('/sumbit', 'JokeController@submitJoke');
+Route::post('/submit', 'JokeController@submitJoke');
+Route::get('/flaggedjokes', 'JokeController@getFlaggedJokes');
+Route::get('/flaggedjokes/unflag/{id}', 'JokeController@unFlagJoke');
 Route::get('/', 'JokeController@home');
 // Route::get('/{id}', 'JokeController@getJoke');

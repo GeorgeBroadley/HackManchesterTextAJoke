@@ -17,6 +17,7 @@
                 </div>
                 <div class="section-button">
                     <a href="./"><button>Another!</button></a>
+                    <a href="./submit"><button>Submit A Joke</button></a>
                 </div>
             </div>
         </div>

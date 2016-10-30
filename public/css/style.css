@@ -107,10 +107,10 @@ div.content-main .section-header {
     color: lightgrey;
 }
 
-.section-button a button {
+.section-button a button, .section-button button.submit-btn {
     font-size: 20px;
     padding: 10px;
-    width: 50vw;
+    width: 25vw;
     font-family: 'Source Sans Pro';
     font-weight: 400;
     text-align: center;
@@ -120,7 +120,7 @@ div.content-main .section-header {
     cursor: pointer;
 }
 
-.section-button a button:hover {
+.section-button a button:hover, .section-button button.submit-btn:hover {
     background-color: lightgrey;
     border: 2px solid lightgrey;
     cursor: pointer;
@@ -155,14 +155,12 @@ hr {
 .form-input {
     border: 2px solid grey;
     font-family: 'Source Sans Pro';
-    border-right: none;
     font-size: 20px;
     width: 400px;
     margin: 15px;
-    margin-right: -2.5px;
-    background: none;
+    background: 2px solid darkslategrey;
     padding: 5px;
-    color: #DDDDDD;
+    color: grey;
     height: 41px;
     box-sizing: border-box;
 }
